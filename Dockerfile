@@ -9,10 +9,10 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
     && pip install --no-cache-dir -r requirements.txt
 
-COPY pyproject.toml alembic.ini ./
+COPY pyproject.toml ./
+COPY alembic.ini ./
 COPY app ./app
 COPY alembic ./alembic
-COPY docs ./docs
 
 ENV PORT=3000
 
