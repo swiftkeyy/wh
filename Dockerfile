@@ -9,7 +9,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
     && pip install --no-cache-dir -r requirements.txt
 
-COPY pyproject.toml README.md alembic.ini ./
+COPY pyproject.toml alembic.ini ./
 COPY app ./app
 COPY alembic ./alembic
 COPY docs ./docs
