@@ -1,0 +1,102 @@
+Metadata-Version: 2.4
+Name: lumiaflow-bot
+Version: 0.1.0
+Summary: Telegram-first AI image generation and editing platform
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: aiogram<4.0.0,>=3.7.0
+Requires-Dist: fastapi<1.0.0,>=0.115.0
+Requires-Dist: uvicorn[standard]<1.0.0,>=0.30.0
+Requires-Dist: sqlalchemy<3.0.0,>=2.0.32
+Requires-Dist: alembic<2.0.0,>=1.13.2
+Requires-Dist: asyncpg<1.0.0,>=0.29.0
+Requires-Dist: psycopg[binary]<4.0.0,>=3.2.1
+Requires-Dist: redis<6.0.0,>=5.0.8
+Requires-Dist: celery<6.0.0,>=5.4.0
+Requires-Dist: httpx<1.0.0,>=0.27.0
+Requires-Dist: pydantic<3.0.0,>=2.8.0
+Requires-Dist: pydantic-settings<3.0.0,>=2.4.0
+Requires-Dist: python-json-logger<3.0.0,>=2.0.7
+Requires-Dist: structlog<25.0.0,>=24.4.0
+Requires-Dist: prometheus-fastapi-instrumentator<8.0.0,>=7.0.0
+Requires-Dist: sentry-sdk[fastapi]<3.0.0,>=2.12.0
+Requires-Dist: boto3<2.0.0,>=1.35.0
+Requires-Dist: orjson<4.0.0,>=3.10.7
+Requires-Dist: google-genai<2.0.0,>=1.30.0
+Requires-Dist: pillow<11.0.0,>=10.4.0
+Provides-Extra: dev
+Requires-Dist: pytest<9.0.0,>=8.3.2; extra == "dev"
+Requires-Dist: pytest-asyncio<1.0.0,>=0.23.8; extra == "dev"
+Requires-Dist: pytest-cov<6.0.0,>=5.0.0; extra == "dev"
+Requires-Dist: respx<1.0.0,>=0.21.1; extra == "dev"
+Requires-Dist: ruff<1.0.0,>=0.6.3; extra == "dev"
+Requires-Dist: mypy<2.0.0,>=1.11.1; extra == "dev"
+
+# WHYNOT Photoshop
+
+Production-oriented Telegram-first AI image generation and editing platform.
+
+## What is included
+
+- FastAPI application for webhooks, health, billing callbacks, and internal APIs.
+- aiogram-ready bot layer for Telegram flows.
+- Celery worker foundation for async image jobs, billing tasks, and notifications.
+- PostgreSQL, Redis, and S3-compatible storage integration points.
+- Prompt template catalog with versioned metadata.
+- Core database models for users, jobs, ledger, templates, payments, support, and admin tooling.
+- `remove.bg` adapter for high-value background removal workflows.
+- Google Gemini image adapter for generation and guided image editing workflows.
+
+## Why Celery
+
+Celery is the right default over RQ for this product because it gives us:
+
+- first-class retry policies and queue routing,
+- better control over long-running tasks and concurrency,
+- richer task metadata and operational maturity,
+- easier growth into multi-queue production workloads.
+
+RQ is simpler, but this product needs business-safe job orchestration, not just a lightweight queue.
+
+## Local E2E Flow
+
+1. Fill real values in `.env`.
+2. Start infrastructure and services:
+
+```bash
+docker compose up --build
+```
+
+3. Run one-time bootstrap for storage bucket:
+
+```bash
+docker compose run --rm bootstrap
+```
+
+4. Register Telegram webhook after you have a public HTTPS URL:
+
+```bash
+python -m app.bootstrap --set-webhook --drop-pending-updates
+```
+
+Webhook target:
+
+```text
+{PUBLIC_BASE_URL}/webhooks/telegram
+```
+
+## Environment Strategy
+
+- Local development uses `.env`
+- Optional local overrides can live in `.env.local`
+- Staging template: `.env.staging.example`
+- Production template: `.env.prod.example`
+- Real staging/production secrets should be injected by the runtime platform, not stored in git
+
+## First Working Scenario
+
+- Send `/start`
+- Tap `Создать`
+- Tap `Удалить фон`
+- Upload a photo
+- Bot creates a job, stores the source file, queues the task, calls `remove.bg`, stores the result, and sends the processed file back to the user

@@ -1,0 +1,149 @@
+{
+  "library_version": "2026-04-01",
+  "templates": [
+    {
+      "code": "photo_enhance",
+      "version": "1.0.0",
+      "category": "photo_enhance",
+      "tier": "free",
+      "style_profile": "clean_commercial_image",
+      "moderation_tags": ["general", "face", "photo"],
+      "locales": {
+        "ru": {
+          "title": "Улучшение фото",
+          "prompt_prefix": "Улучши исходное фото, сохрани человека и композицию, подчисти шум, свет и резкость, сделай результат естественным и пригодным для публикации."
+        },
+        "en": {
+          "title": "Photo Enhance",
+          "prompt_prefix": "Enhance the source photo while preserving the person and composition. Improve lighting, sharpness, skin realism, and overall publish-ready quality."
+        }
+      }
+    },
+    {
+      "code": "background_replace",
+      "version": "1.0.0",
+      "category": "background_replace",
+      "tier": "free",
+      "style_profile": "subject_isolation",
+      "moderation_tags": ["general", "photo", "segmentation"],
+      "locales": {
+        "ru": {
+          "title": "Замена фона",
+          "prompt_prefix": "Сохрани основной объект, аккуратно отдели его от фона и создай новый фон, соответствующий запросу, без артефактов по краям."
+        },
+        "en": {
+          "title": "Background Replace",
+          "prompt_prefix": "Preserve the main subject, cut it cleanly from the background, and generate a new background matching the request with clean edges."
+        }
+      }
+    },
+    {
+      "code": "outfit_swap",
+      "version": "1.0.0",
+      "category": "outfit_swap",
+      "tier": "premium",
+      "style_profile": "fashion_edit",
+      "moderation_tags": ["general", "fashion", "body_sensitive"],
+      "locales": {
+        "ru": {
+          "title": "Смена одежды",
+          "prompt_prefix": "Замени одежду на основе запроса, сохрани позу, лицо и пропорции человека, добейся реалистичной ткани, света и посадки."
+        },
+        "en": {
+          "title": "Outfit Swap",
+          "prompt_prefix": "Change the outfit according to the request while preserving pose, face, and body proportions. Keep fabric, fit, and lighting realistic."
+        }
+      }
+    },
+    {
+      "code": "transparent_bg",
+      "version": "1.0.0",
+      "category": "transparent_background",
+      "tier": "free",
+      "style_profile": "transparent_product_cutout",
+      "moderation_tags": ["general", "photo", "segmentation"],
+      "locales": {
+        "ru": {
+          "title": "Прозрачный фон",
+          "prompt_prefix": "Выдели главный объект и подготовь результат без фона, с чистым контуром и коммерческим качеством вырезки."
+        },
+        "en": {
+          "title": "Transparent Background",
+          "prompt_prefix": "Extract the main subject and prepare a clean transparent background result with commercial-quality edges."
+        }
+      }
+    },
+    {
+      "code": "movie_poster",
+      "version": "1.0.0",
+      "category": "movie_poster",
+      "tier": "premium",
+      "style_profile": "cinematic_poster",
+      "moderation_tags": ["general", "creative", "text_sensitive"],
+      "locales": {
+        "ru": {
+          "title": "Кинопостер",
+          "prompt_prefix": "Сделай выразительный кинопостер с сильной композицией, драматичным светом и премиальной визуальной подачей. Не искажай лицо человека."
+        },
+        "en": {
+          "title": "Movie Poster",
+          "prompt_prefix": "Create a striking cinematic poster with premium composition, dramatic lighting, and strong storytelling while preserving facial identity."
+        }
+      }
+    },
+    {
+      "code": "action_figure",
+      "version": "1.0.0",
+      "category": "action_figure",
+      "tier": "premium",
+      "style_profile": "toy_packaging",
+      "moderation_tags": ["general", "creative", "brand_sensitive"],
+      "locales": {
+        "ru": {
+          "title": "Экшн-фигурка",
+          "prompt_prefix": "Преобразуй персонажа в премиальную коллекционную фигурку в упаковке, с реалистичным пластиком, аксессуарами и привлекательной подачей."
+        },
+        "en": {
+          "title": "Action Figure",
+          "prompt_prefix": "Transform the subject into a premium collectible action figure in packaging with realistic materials, accessories, and a compelling presentation."
+        }
+      }
+    },
+    {
+      "code": "manga_style",
+      "version": "1.0.0",
+      "category": "manga_style",
+      "tier": "premium",
+      "style_profile": "manga_editorial",
+      "moderation_tags": ["general", "stylized", "photo"],
+      "locales": {
+        "ru": {
+          "title": "Манга-стиль",
+          "prompt_prefix": "Преобразуй изображение в выразительный manga-style с чистыми линиями, сильным контрастом и узнаваемыми чертами персонажа."
+        },
+        "en": {
+          "title": "Manga Style",
+          "prompt_prefix": "Transform the image into a strong manga-style composition with clean linework, expressive contrast, and recognizable subject identity."
+        }
+      }
+    },
+    {
+      "code": "product_photo",
+      "version": "1.0.0",
+      "category": "product_photo",
+      "tier": "premium",
+      "style_profile": "ecommerce_studio",
+      "moderation_tags": ["general", "commerce", "product"],
+      "locales": {
+        "ru": {
+          "title": "Фото товара",
+          "prompt_prefix": "Создай коммерческую product photo под e-commerce: чистый свет, акцент на товаре, аккуратные тени, высокий CTR и ощущение доверия."
+        },
+        "en": {
+          "title": "Product Photo",
+          "prompt_prefix": "Create a commercial ecommerce product photo with clean lighting, careful shadows, high click-through appeal, and trustworthy presentation."
+        }
+      }
+    }
+  ]
+}
